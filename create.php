@@ -7,6 +7,12 @@
     <title>Adicionar</title>
 </head>
 <body>
+    <?php
+    if (!$con) {
+        die("Erro na conexão: " . mysqli_connect_error());
+    }
+    ?>''
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.php">Home</a>
@@ -24,7 +30,7 @@
                     <input 
                     autofocus
                     type="text" 
-                    name="titulo" 
+                    name="titulo"
                     class="form-control" >
                 </div>
                 <div class="col-9">
@@ -36,10 +42,10 @@
                 </div>
                 <div class="col-9">
                     <label for="diretor" class="form-label">Genêro</label>
-                    <select class="form-select" aria-label="Default select example">
+                    <select class="form-select" name="genero_id" aria-label="Default select example">
                         <option selected>Escolha o genêro</option>
                         <?php
-                            $con = mysqli_connect("127.0.0.1", "root", "", "trab-crud");
+                            $con = mysqli_connect("127.0.0.1", "root", "Senha@123", "trab-crud");
 
                             if ($con) {
                                 $sql = "SELECT * FROM generos ORDER BY genero";
@@ -56,8 +62,8 @@
                 <div class="col-9">
                     <label for="duracao" class="form-label">Duração(em minutos):</label>
                     <input 
-                    type="duracao" 
-                    name="genero" 
+                    type="number" 
+                    name="duracao" 
                     class="form-control">
                 </div>
                 <div class="col-9">
