@@ -20,33 +20,25 @@
         <a href="./create.php" class="btn btn-dark mb-2">Adicionar nova serie</a>
         <ul class="list-group">
             <?php 
-                if($con){
+                if ($con) {
                     $sql = "SELECT * FROM filmes ORDER BY titulo";
                     $filmes = mysqli_query($con, $sql);
 
-                    foreach($filmes as $filme){
-                        echo("<li class='list-group-item d-flex justify-content-between aling-items-center'>
-                            <a href={{ route('seasons.index') }}'>$filme[titulo]</a>
-                               
-                            <span class='d-flex'>
-                
-                                <a href='{{ route('series.edit') }}' class='btn btn-primary btn-sm'>
-                                    Editar
-                                </a>
-                
-                                <form action='{{ route('series.destroy' }}'' method='post' class='ms-2'>
-                                    <button class='btn btn-danger btn-sm'>
-                                        Deletar
-                                    </button>
-                                </form>
-                
-                            </span>
-                        </li>");
+                    foreach ($filmes as $filme) {
+                        echo "<li class='list-group-item d-flex justify-content-between align-items-center'>";
+                        echo "<a href='#'>" . htmlspecialchars($filme['titulo']) . "</a>";
+
+                        echo "<span class='d-flex'>";
+                        echo "<a href='edit.php?id=" . $filme['id'] . "' class='btn btn-primary btn-sm me-2'>Editar</a>";
+                        echo "<a href='delete.php?id=" . $filme['id'] . "' class='btn btn-danger btn-sm'>Deletar</a>";
+                        echo "</span>";
+
+                        echo "</li>";
                     }
                 }
             ?>
-
-        </ul>    
+        </ul>
+    
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>

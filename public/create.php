@@ -39,7 +39,7 @@
                     class="form-control">
                 </div>
                 <div class="col-9">
-                    <label for="diretor" class="form-label">Genêro</label>
+                    <label for="genero_id" class="form-label">Genêro</label>
                     <select class="form-select" name="genero_id" aria-label="Default select example">
                         <option selected>Escolha o genêro</option>
                         <?php
