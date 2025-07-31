@@ -8,10 +8,8 @@
 </head>
 <body>
     <?php
-    if (!$con) {
-        die("Erro na conexão: " . mysqli_connect_error());
-    }
-    ?>''
+        require_once '../db_connection.php';
+    ?>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
@@ -45,13 +43,11 @@
                     <select class="form-select" name="genero_id" aria-label="Default select example">
                         <option selected>Escolha o genêro</option>
                         <?php
-                            $con = mysqli_connect("127.0.0.1", "root", "Senha@123", "trab-crud");
-
                             if ($con) {
                                 $sql = "SELECT * FROM generos ORDER BY genero";
 
                                 $generos = mysqli_query($con, $sql);
-
+                                
                                 foreach ($generos as $genero) {
                                     echo ("<option value='$genero[id]'>$genero[genero]</option>");
                                 }
@@ -69,7 +65,7 @@
                 <div class="col-9">
                     <label for="lancamento" class="form-label">Ano de lançamento:</label>
                     <input 
-                    type="text" 
+                    type="date" 
                     name="lancamento" 
                     class="form-control">
                 </div>
