@@ -42,10 +42,16 @@
 
         if (mysqli_query($con, $sql) ){
 			if (isset($id_filme) && !empty($id_filme) ) {
-				echo ("<script>alert('Usuário atualizado com sucesso'); </script>");
-			} else { 
-				echo ("<script>alert('Usuário inserido com sucesso'); </script>");// por enquanto mostrando a mensagem usando um alert
-			}
+            echo "<script>
+                alert('Filme atualizado com sucesso');
+                window.location.href = 'index.php';
+            </script>";			
+        } else { 
+            echo "<script>
+                alert('Filme inserido com sucesso!');
+                window.location.href = 'index.php';
+            </script>";			
+        }   
 
 		} else {
 			echo ("Houve um erro ao inserir no banco de dados");
