@@ -1,21 +1,20 @@
 <?php
     require_once '../../db_connection.php';
-	$id_filme = $_GET["id"];
+	$id_genero = $_GET["id"];
 
-	$sql = "DELETE FROM filmes WHERE id = $id_filme";
+	$sql = "DELETE FROM generos WHERE id = $id_genero";
 
 	if (mysqli_query($con, $sql) ){
 		echo ("
             <script>
                 alert('Genero excluído com sucesso');
                 window.location.href = 'index.php';
-            </script>"
-            );
+            </script>");
 	} else {
 		echo ("
             <script>
-                alert('Genero excluído com sucesso');
+                alert('Houve um erro ao excluir');
                 window.location.href = 'index.php';
-            </script>
-        ");
+            </script>");
 	}
+

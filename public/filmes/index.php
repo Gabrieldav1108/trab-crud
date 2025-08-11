@@ -18,7 +18,7 @@
     </nav>
     <div class="container border border-1 border-dark rounded p-4 my-4 shadow">
         <a href="./create.php" class="btn btn-dark mb-2">Adicionar nova serie</a>
-        <a href="../generos/index.php" class="btn btn-dark mb-2">Generos </a>
+        <a href="../generos/index.php" class="btn btn-dark mb-2">Generos</a>
         <ul class="list-group">
             <?php 
                 if ($con) {
