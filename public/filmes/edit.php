@@ -1,25 +1,31 @@
 <?php
-    require_once '../db_connection.php';
+require_once '../../db_connection.php';
 
-    if (!$con) {
-        die("Não foi possível conectar com o banco de dados");
-    }
+if (!$con) {
+    die("Não foi possível conectar com o banco de dados");
+}
 
-    $id = $_GET['id'] ?? null;
-    if (!$id) {
-        header("location: index.php");
-        exit;
-    }
+// Buscar todos os gêneros do banco de dados
+$generos_query = $con->query("SELECT id, genero FROM generos ORDER BY genero");
+if (!$generos_query) {
+    die("Erro ao buscar gêneros: " . $con->error);
+}
 
-    $sql = "SELECT * FROM filmes WHERE id = $id";
-    $resultado = mysqli_query($con, $sql);
+$id = $_GET['id'] ?? null;
+if (!$id) {
+    header("location: index.php");
+    exit;
+}
 
-    if (mysqli_num_rows($resultado) == 1) {
-        $filme = mysqli_fetch_assoc($resultado);
-    } else {
-        header("location: index.php");
-        exit;
-    }
+$sql = "SELECT * FROM filmes WHERE id = $id";
+$resultado = mysqli_query($con, $sql);
+
+if (mysqli_num_rows($resultado) == 1) {
+    $filme = mysqli_fetch_assoc($resultado);
+} else {
+    header("location: index.php");
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -67,17 +73,18 @@
 
         <div class="mb-3">
             <label for="genero_id" class="form-label">Gênero:</label>
-            <select class="form-select" name="genero_id" required>
-                <option disabled>Escolha o gênero</option>
-                <?php
-                    $sql = "SELECT * FROM generos ORDER BY genero";
-                    $generos = mysqli_query($con, $sql);
-
-                    foreach ($generos as $genero) {
-                        $selected = ($genero['id'] == $filme['genero_id']) ? 'selected' : '';
-                        echo "<option value='{$genero['id']}' $selected>{$genero['genero']}</option>";
-                    }
+            <select name="genero_id" class="form-select" required>
+                <option value="">Selecione um gênero</option>
+                <?php 
+                // Resetar o ponteiro para garantir que vamos percorrer todos os resultados
+                $generos_query->data_seek(0);
+                while ($genero = $generos_query->fetch_assoc()): 
                 ?>
+                    <option value="<?= $genero['id'] ?>" 
+                        <?= ($filme['genero_id'] == $genero['id']) ? 'selected' : '' ?>>
+                        <?= htmlspecialchars($genero['genero']) ?>
+                    </option>
+                <?php endwhile; ?>
             </select>
         </div>
 

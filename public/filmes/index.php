@@ -8,7 +8,7 @@
 </head>
 <body>
     <?php
-        require_once '../db_connection.php';
+        require_once '../../db_connection.php';
     ?>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
@@ -18,6 +18,7 @@
     </nav>
     <div class="container border border-1 border-dark rounded p-4 my-4 shadow">
         <a href="./create.php" class="btn btn-dark mb-2">Adicionar nova serie</a>
+        <a href="../generos/index.php" class="btn btn-dark mb-2">Generos </a>
         <ul class="list-group">
             <?php 
                 if ($con) {
