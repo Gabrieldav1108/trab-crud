@@ -1,5 +1,6 @@
 <?php
-    require_once '../../db_connection.php';
+    require_once '../db_connection.php';
+    require_once '../protege.php';
 	$id_genero = $_GET["id"];
 
 	$sql = "DELETE FROM generos WHERE id = $id_genero";

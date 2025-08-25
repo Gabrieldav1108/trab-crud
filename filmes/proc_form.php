@@ -1,5 +1,6 @@
 <?php
-require_once '../../db_connection.php';
+require_once '../db_connection.php';
+require_once '../protege.php';
 
 var_dump($_POST); // Para depuração, remova em produção
 // Verificar conexão
@@ -80,11 +81,20 @@ if (count($erros) == 0) {
     if (mysqli_query($con, $sql)) {
         // Define mensagem de sucesso na sessão
         if (!empty($id_filme)) {
-            $_SESSION["msg_sucesso"] = 'Filme atualizado com sucesso';
+            echo(
+                "<script>
+                    alert('Filme inserido com sucesso');
+                    window.location.href = 'index.php';
+                </script>"
+            );
         } else {
-            $_SESSION["msg_sucesso"] = 'Filme cadastrado com sucesso';
+            echo(
+                "<script>
+                    alert('Filme inserido com sucesso');
+                    window.location.href = 'index.php';
+                </script>"
+            );
         }
-        header("location: index.php");
         exit();
     } else {
         $erros[] = "Erro ao executar a operação: " . mysqli_error($con);

@@ -1,5 +1,6 @@
 <?php
-require_once '../../db_connection.php';
+require_once '../db_connection.php';
+require_once '../protege.php';
 
 if (!$con) {
     die("Não foi possível conectar com o banco de dados");

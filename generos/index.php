@@ -8,7 +8,8 @@
 </head>
 <body>
     <?php
-        require_once '../../db_connection.php';
+        require '../db_connection.php';
+        require'../protege.php';
     ?>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
@@ -17,21 +18,21 @@
         </div>
     </nav>
     <div class="container border border-1 border-dark rounded p-4 my-4 shadow">
-        <a href="./create.php" class="btn btn-dark mb-2">Adicionar nova serie</a>
-        <a href="../generos/index.php" class="btn btn-dark mb-2">Generos</a>
+        <a href="./create.php" class="btn btn-dark mb-2">Adicionar novo gênero</a>
+        <a href="../filmes/index.php" class="btn btn-dark mb-2">Filmes</a>
         <ul class="list-group">
             <?php 
                 if ($con) {
-                    $sql = "SELECT * FROM filmes ORDER BY titulo";
-                    $filmes = mysqli_query($con, $sql);
+                    $sql = "SELECT * FROM generos ORDER BY genero";
+                    $generos = mysqli_query($con, $sql);
 
-                    foreach ($filmes as $filme) {
+                    foreach ($generos as $genero) {
                         echo "<li class='list-group-item d-flex justify-content-between align-items-center'>";
-                        echo "<a href='#'>" . htmlspecialchars($filme['titulo']) . "</a>";
+                        echo "<a href='#'>" . htmlspecialchars($genero['genero']) . "</a>";
 
                         echo "<span class='d-flex'>";
-                        echo "<a href='edit.php?id=" . $filme['id'] . "' class='btn btn-primary btn-sm me-2'>Editar</a>";
-                        echo "<a href='delete.php?id=" . $filme['id'] . "' class='btn btn-danger btn-sm'>Deletar</a>";
+                        echo "<a href='edit.php?id=" . $genero['id'] . "' class='btn btn-primary btn-sm me-2'>Editar</a>";
+                        echo "<a href='delete.php?id=" . $genero['id'] . "' class='btn btn-danger btn-sm'>Deletar</a>";
                         echo "</span>";
 
                         echo "</li>";

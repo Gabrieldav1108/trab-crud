@@ -9,7 +9,8 @@
 </head>
 <body>
     <?php
-        require_once '../../db_connection.php';
+        require_once '../db_connection.php';
+        require_once '../protege.php';
         $generos = $con->query("SELECT * FROM generos ORDER BY genero");
     ?>
 
