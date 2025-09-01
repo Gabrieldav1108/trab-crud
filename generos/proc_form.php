@@ -33,12 +33,11 @@ if (count($erros) === 0) {
     }
 
     if (mysqli_query($con, $sql)) {
-        echo(
-            "<script>
-                alert('Genero inserido com sucesso');
-                window.location.href = 'index.php';
-            </script>"
-        );
+        $_SESSION['mensagem_sucesso'] = $id_genero
+            ? "Gênero atualizado com sucesso!"
+            : "Gênero inserido com sucesso!";
+        
+        header("Location: index.php");
         exit();
     } else {
         $erros[] = "Erro no banco de dados: " . mysqli_error($con);
@@ -47,11 +46,10 @@ if (count($erros) === 0) {
 
 // Se houve erros
 if (count($erros) > 0) {
-    $_SESSION['erros'] = $erros;
-    $_SESSION['dados_form'] = $_POST; // Para manter os dados digitados
+    $_SESSION['mensagem_erro'] = implode('<br>', $erros);
+    $_SESSION['dados_form'] = $_POST; 
     header("Location: " . ($id_genero ? "editar.php?id=$id_genero" : "create.php"));
     exit();
 }
 
 mysqli_close($con);
-?>

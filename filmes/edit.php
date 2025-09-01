@@ -27,7 +27,8 @@ if (mysqli_num_rows($resultado) == 1) {
     header("location: index.php");
     exit;
 }
-?>
+
+?>  
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -76,13 +77,12 @@ if (mysqli_num_rows($resultado) == 1) {
             <label for="genero_id" class="form-label">Gênero:</label>
             <select name="genero_id" class="form-select" required>
                 <option value="">Selecione um gênero</option>
-                <?php 
-                // Resetar o ponteiro para garantir que vamos percorrer todos os resultados
+                <?php
                 $generos_query->data_seek(0);
                 while ($genero = $generos_query->fetch_assoc()): 
                 ?>
-                    <option value="<?= $genero['id'] ?>" 
-                        <?= ($filme['genero_id'] == $genero['id']) ? 'selected' : '' ?>>
+                    <option value="<?= $genero['id'] ?>"
+                        <?= ($filme['genero'] == $genero['id']) ? 'selected' : '' ?>>
                         <?= htmlspecialchars($genero['genero']) ?>
                     </option>
                 <?php endwhile; ?>

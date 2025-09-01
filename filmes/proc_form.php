@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once '../db_connection.php';
 require_once '../protege.php';
 
@@ -81,20 +82,12 @@ if (count($erros) == 0) {
     if (mysqli_query($con, $sql)) {
         // Define mensagem de sucesso na sessão
         if (!empty($id_filme)) {
-            echo(
-                "<script>
-                    alert('Filme inserido com sucesso');
-                    window.location.href = 'index.php';
-                </script>"
-            );
+            $_SESSION['mensagem_sucesso'] = "Filme atualizado com sucesso!";
+
         } else {
-            echo(
-                "<script>
-                    alert('Filme inserido com sucesso');
-                    window.location.href = 'index.php';
-                </script>"
-            );
+            $_SESSION['mensagem_sucesso'] = "Filme inserido com sucesso!";
         }
+        header("Location: index.php");
         exit();
     } else {
         $erros[] = "Erro ao executar a operação: " . mysqli_error($con);
@@ -103,8 +96,8 @@ if (count($erros) == 0) {
 
 // Se chegou aqui, houve erros
 if (count($erros) > 0) {
-    $_SESSION["erros"] = $erros;
-    header("location: " . (!empty($id_filme) ? "editar.php?id=$id_filme" : "create.php"));
+    $_SESSION["mensagem_erro"] = implode('<br>', $erros);
+    header("Location: " . (!empty($id_filme) ? "edit.php?id=$id_filme" : "create.php"));
     exit();
 }
 

@@ -1,7 +1,7 @@
 <?php
 $host = '127.0.0.1';
 $usuario = 'root';
-$senha = 'Senha@123';
+$senha = '';
 $banco = 'trab-crud';
 
 $con = mysqli_connect($host, $usuario, $senha, $banco);

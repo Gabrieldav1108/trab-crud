@@ -12,12 +12,25 @@
     <title>Home</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="index.php">Home</a>
-            <a href="" class="btn btn-primary">Sair</a>
-        </div>
-    </nav>
+<?php
+
+if (isset($_SESSION['mensagem_sucesso'])) {
+    echo '<div class="alert alert-success alert-dismissible fade show" role="alert">'
+        . $_SESSION['mensagem_sucesso'] .
+        '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>';
+    unset($_SESSION['mensagem_sucesso']); 
+}
+
+if (isset($_SESSION['mensagem_erro'])) {
+    echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">'
+        . $_SESSION['mensagem_erro'] .
+        '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>';
+    unset($_SESSION['mensagem_erro']); 
+}
+?>
+
 
     <div class="container border border-1 border-dark rounded p-4 my-4 shadow">
         <a href="./create.php" class="btn btn-dark mb-2">Adicionar nova série</a>
